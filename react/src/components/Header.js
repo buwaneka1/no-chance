@@ -20,7 +20,8 @@ class Header extends Component {
                     </div>
 
                     <div className="join">
-                        <span>Sign Out</span>
+                        <span>Join</span>
+                        {/* <span>Sign Out</span> */}
                     </div>
                 </div>
             </section>
