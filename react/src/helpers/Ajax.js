@@ -10,12 +10,17 @@ class AjaxHelper {
             headers.append('X-Token', Util.getLocals('token'));
         }
 
+        const settings = {
+            method: request.method,
+            headers: headers 
+        };
+        
+        if (request.method === 'POST') {
+            settings.body = JSON.stringify(request.param);
+        }
+
         return new Promise((resolve, reject) => {
-            fetch(request.url, {
-                method: request.method,
-                headers: headers,
-                body: JSON.stringify(request.param)
-            })
+            fetch(request.url, settings)
             .then(response => response.json())
             .then(res => {
                 if (res.ok) {
