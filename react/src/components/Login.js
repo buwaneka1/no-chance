@@ -10,7 +10,7 @@ class Login extends Component {
         super(props);
 
         this.initialState = {
-            isLoading: true,
+            isLoading: false,
             username: '',
             password: '',
             usernameError: false,
@@ -59,16 +59,12 @@ class Login extends Component {
         e.preventDefault();
 
         if (_.isEmpty(this.state.username)) {
-            this.setState({
-                usernameError: true
-            });
+            this.setState({ usernameError: true });
             this.usernameInput.focus();
         }
 
         if (_.isEmpty(this.state.password)) {
-            this.setState({
-                passwordError: true
-            });
+            this.setState({ passwordError: true });
 
             if (!_.isEmpty(this.state.username)) {
                 this.passwordInput.focus();
@@ -76,10 +72,18 @@ class Login extends Component {
         }
 
         if (!this.state.usernameError && !this.state.passwordError) {
+            this.setState({ isLoading: true });
+            document.getElementById('usernameInput').style.display = 'none';
+            document.getElementById('passwordInput').style.display = 'none';
+
             const response = await AjaxHelper.activateUser(URL_POST_USER_ACTIVATE, {
                 username: this.state.username,
                 password: this.state.password
             });
+            
+            this.setState({ isLoading: false });
+            document.getElementById('usernameInput').style.display = 'block';
+            document.getElementById('passwordInput').style.display = 'block';
         }
 
     }
@@ -110,7 +114,8 @@ class Login extends Component {
 
                                     <input type="text" 
                                             placeholder="USERNAME" 
-                                            name="username"
+                                            name="username" 
+                                            id="usernameInput"
                                             value={username}
                                             ref={(input) => { this.usernameInput = input }} 
                                             onChange={this.handleInput} 
@@ -118,6 +123,7 @@ class Login extends Component {
                                     <input type="password" 
                                             placeholder="PASSWORD" 
                                             name="password" 
+                                            id="passwordInput"
                                             value={password}
                                             ref={(input) => { this.passwordInput = input }}
                                             onChange={this.handleInput} 
