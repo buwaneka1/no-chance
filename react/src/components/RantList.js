@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Rant from './Rant';
+import Loader from './Loader';
 import '../styles/rantlist.css';
 
 class RantList extends Component {
@@ -12,6 +13,8 @@ class RantList extends Component {
                     <Rant />
                 </Link>
                     
+                <Loader isLoading={true}/>
+
                 <div className="rant__add" title="Add Rant">+</div>        
 
             </div>
