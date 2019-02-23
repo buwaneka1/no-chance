@@ -10,7 +10,7 @@ class App extends Component {
                 <div className="page">
 
                     <Header/>
-                    <Loader/>
+                    <Loader isLoading={false} />
 
                 </div>
             </div>
