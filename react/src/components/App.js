@@ -1,19 +1,31 @@
 import React, {Component} from 'react';
 import Header from './Header'; 
 import Loader from './Loader'; 
+import RantList from './RantList';
+import RantDetails from './RantDetails';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import '../styles/app.css';
 
 class App extends Component {
     render() {
         return (
-            <div className="App">
-                <div className="page">
+            <Router>
+                <div className="App">
+                    <div className="page">
 
-                    <Header/>
-                    <Loader isLoading={false} />
+                        <Header />
 
+                        <section className="main layout--center">
+                            <div className="main__content layout--wrapped">
+                                <Loader isLoading={false} />
+                                <Route path="/" exact component={RantList} />
+                                <Route path="/rant/:id" component={RantDetails} />
+                            </div>
+                        </section>
+
+                    </div>
                 </div>
-            </div>
+            </Router>
         );
     }
 }
