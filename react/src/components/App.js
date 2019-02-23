@@ -21,7 +21,7 @@ class App extends Component {
                                 <Loader isLoading={false} />
                                 <Route path="/" exact component={RantList} />
                                 <Route path="/rant/:id" component={RantDetails} />
-                                <Login/>
+                                <Login isOpen={false}/>
                             </div>
                         </section>
 

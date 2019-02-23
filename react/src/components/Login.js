@@ -3,8 +3,11 @@ import '../styles/login.css';
 
 class Login extends Component {
     render() {
+        let isOpen = this.props.isOpen;
+        let popupClass = isOpen ? 'popup popup--open' : 'popup';
+
         return(
-            <div className="popup popup--open">
+            <div className={popupClass}>
                 <div className="popup__header">
                     <div title="Close" className="close layout--center">
                         X
