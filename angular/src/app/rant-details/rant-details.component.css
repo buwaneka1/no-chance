@@ -1,0 +1,218 @@
+.rant__add,
+.rant__comment {
+  position: fixed;
+  bottom: 24px;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  background: #fd2954;
+  font-size: 36px;
+  line-height: 36px;
+  font-family: "Fredoka One", cursive;
+  padding: 4px;
+  border-radius: 100%;
+  color: white;
+  left: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.1s ease-in;
+  margin-left: -25px;
+}
+.rant__add:hover,
+.rant__comment:hover {
+  background: #d31c41;
+}
+
+.rant__comment .icon {
+  fill: white;
+  width: 24px;
+  height: 24px;
+}
+
+.rant-details {
+  flex-direction: column;
+}
+.rant-details .post-hero {
+  width: 100%;
+  font-size: 14px;
+  display: block;
+  background: #212439;
+  margin-bottom: 16px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.rant-details .post-hero .post-hero__inner {
+  padding: 30px 50px;
+  display: flex;
+  width: 100%;
+  height: calc(100% - 30px);
+}
+.rant-details .post-hero .post-hero__inner .score {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.rant-details .post-hero .post-hero__inner .score .score__up,
+.rant-details .post-hero .post-hero__inner .score .score__down {
+  width: 48px;
+  height: 48px;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 2px;
+  border-radius: 100%;
+  cursor: pointer;
+  background: #5c5f6f;
+  user-select: none;
+  transition: all 0.1s ease-in;
+}
+.rant-details .post-hero .post-hero__inner .score .score__up:hover {
+  background: #1ba749 !important;
+}
+.rant-details .post-hero .post-hero__inner .score .score__up.checked {
+  background: #1ba749 !important;
+}
+.rant-details .post-hero .post-hero__inner .score .score__down:hover {
+  background: #fd2954 !important;
+}
+.rant-details .post-hero .post-hero__inner .score .score__down.checked {
+  background: #fd2954 !important;
+}
+.rant-details .post-hero .post-hero__inner .score .score__board {
+  padding: 12px 0;
+  font-size: 22px;
+}
+.rant-details .post-hero .post-hero__inner .post-hero__body {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 30px;
+  word-break: break-word;
+  font-size: 22px;
+  flex-direction: column;
+}
+.rant-details .post-hero .post-hero__inner .post-hero__body .profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rant-details .post-hero .post-hero__inner .post-hero__body .profile .profile__name {
+  font-size: 20px;
+  padding-left: 8px;
+}
+.rant-details .post-hero .post-hero__inner .post-hero__body .post__details {
+  padding-top: 18px;
+}
+.rant-details .post-hero .post-hero__footer {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 30px 60px;
+}
+.rant-details .post-hero .post-hero__footer .post-hero__delete {
+  border: 1px solid #db153d;
+  padding: 4px 8px;
+  background: transparent;
+  color: #fd2954;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  user-select: none;
+}
+.rant-details .post-hero .post-hero__footer .post-hero__delete:hover {
+  color: white;
+  background: #b11837;
+}
+.rant-details .post-hero .post-hero__footer .post-hero__time {
+  width: auto;
+  margin-left: auto;
+  font-size: 18px;
+  color: lightgray;
+}
+.rant-details .no-comments {
+  color: #5b5e6f;
+  font-size: 19px;
+}
+.rant-details .comments {
+  display: block;
+  max-width: 600px;
+  width: 100%;
+  height: 200px;
+}
+.rant-details .comments .comments__title {
+  color: #5b5e6f;
+  font-size: 32px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.rant-details .comments .comments__title span {
+  color: #24e063;
+}
+.rant-details .comments .comment {
+  width: 100%;
+  font-size: 14px;
+  display: block;
+  background: #212439;
+  margin-bottom: 16px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.rant-details .comments .comment .comment__inner {
+  padding: 20px 20px;
+  display: flex;
+  width: 100%;
+  height: calc(100% - 30px);
+}
+.rant-details .comments .comment .comment__inner .comment__body {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  word-break: break-word;
+  font-size: 20px;
+  flex-direction: column;
+}
+.rant-details .comments .comment .comment__inner .comment__body .profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rant-details .comments .comment .comment__inner .comment__body .profile .profile__name {
+  font-size: 20px;
+  padding-left: 8px;
+}
+.rant-details .comments .comment .comment__footer {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px 20px 20px;
+}
+.rant-details .comments .comment .comment__footer .comment__delete {
+  border: 1px solid #db153d;
+  padding: 4px 8px;
+  background: transparent;
+  color: #fd2954;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  user-select: none;
+}
+.rant-details .comments .comment .comment__footer .comment__delete:hover {
+  color: white;
+  background: #b11837;
+}
+.rant-details .comments .comment .comment__footer .comment__time {
+  width: auto;
+  margin-left: auto;
+  font-size: 18px;
+  color: gray;
+}

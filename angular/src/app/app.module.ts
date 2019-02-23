@@ -4,10 +4,13 @@ import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from './header/header.component';
 import { LoaderComponent } from './loader/loader.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { RantListComponent } from './rant-list/rant-list.component';
+import { RantDetailsComponent } from './rant-details/rant-details.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoaderComponent],
-  imports: [BrowserModule],
+  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
