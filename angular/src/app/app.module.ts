@@ -7,9 +7,10 @@ import { LoaderComponent } from './loader/loader.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { RantListComponent } from './rant-list/rant-list.component';
 import { RantDetailsComponent } from './rant-details/rant-details.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent],
+  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent, LoginComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
