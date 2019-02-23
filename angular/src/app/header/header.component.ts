@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UtilityService } from '../utility.service';
 import { Observable } from 'rxjs/Observable';
+import { ApiService } from '../api.service';
+import { CONSTANTS } from '../../constants';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,7 @@ export class HeaderComponent implements OnInit {
   isLogged: boolean = false;
   userName: string = '';
 
-  constructor(private utilityService: UtilityService) { }
+  constructor(private utilityService: UtilityService, private apiService: ApiService) { }
 
   ngOnInit() {
     this.isLogged = this.utilityService.isLoggedCheck();
@@ -21,6 +23,17 @@ export class HeaderComponent implements OnInit {
 
   openLoginModal() {
     this.joinEvent.emit(true);
+  }
+  
+  onSignOutClicked() {
+    this.apiService.call('post', {
+      url: CONSTANTS.userDeactivate,
+      data: {}
+    }).then((res) => {
+      this.isLogged = false;
+      this.utilityService.logOutUser();
+    }).catch(err=>{
+    })
   }
 
   /**handle logging in of user from login component */

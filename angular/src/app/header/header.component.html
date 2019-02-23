@@ -16,7 +16,7 @@
 
         <div class="join">
             <span (click)="openLoginModal()" *ngIf="!isLogged">Join</span>
-            <span  *ngIf="isLogged">Sign Out</span>
+            <span  *ngIf="isLogged" (click)="onSignOutClicked()">Sign Out</span>
         </div>
     </div>
 </section>

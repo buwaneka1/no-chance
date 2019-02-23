@@ -32,4 +32,8 @@ export class UtilityService {
     }
   }
 
+  public logOutUser() {
+    localStorage.clear();
+  }
+
 }

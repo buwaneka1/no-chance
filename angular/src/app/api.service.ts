@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CONSTANTS } from '../constants';
 import { User } from '../models/user';
 import { resolve } from 'url';
@@ -19,13 +19,15 @@ export class ApiService {
   public call(method, request){
     return new Promise((resolve, reject) => {
 
-      if(this.utilityService.isLoggedCheck){
-        request.data.headers = {
+        const httpOptions = (this.utilityService.isLoggedCheck()) ? {
+         headers: new HttpHeaders({
           'X-Token': this.utilityService.getToken()
-        }
-      }
+        })} :  {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json'
+         })};
 
-      this.httpClient[method](request.url,request.data).subscribe((data: any) => {
+      this.httpClient[method](request.url,request.data, httpOptions).subscribe((data: any) => {
         if(data.ok === true){
           resolve(data);
         } else{
