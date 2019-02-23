@@ -30,11 +30,13 @@ class Login extends Component {
     }
 
     handleLoginModal() {
+        this.setState({
+            username: '',
+            password: '',
+            usernameError: false,
+            passwordError: false,
+        });
         this.props.handleLoginModal();
-    }
-
-    componentDidMount() {
-        this.usernameInput.focus();
     }
 
     handleInput(e) {
@@ -108,13 +110,25 @@ class Login extends Component {
                     username: this.state.username,
                     password: this.state.password
                 }
-            }).then(response => {
-                this.setState({
-                    httpError: {
-                        isError: false,
-                        message: ''
-                    }
-                });
+            }).then(data => {
+                if (data.ok) {
+                    this.setState({
+                        httpError: {
+                            isError: false,
+                            message: ''
+                        }
+                    });
+
+                    this.handleLogin(data.username, data.token);
+                } else {
+                    this.setState({
+                        httpError: {
+                            isError: true,
+                            message: data.error
+                        }
+                    });
+                }
+
             }).catch(error => {
                 this.setState({
                     httpError: {
@@ -133,12 +147,16 @@ class Login extends Component {
 
     }
 
+    handleLogin(username, token) {
+        this.props.handleLogin(username, token)
+    }
+
     render() {
         const isLoading = this.state.isLoading;
         const { username, password, usernameError, passwordError, httpError } = this.state;
 
         return(
-            <div className="popup popup--open">
+            <div className="popup" id="loginModal">
                 <div className="popup__header">
                     <div title="Close" className="close layout--center" onClick={this.handleLoginModal}>
                         X
