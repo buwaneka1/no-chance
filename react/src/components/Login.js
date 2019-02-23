@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Loader from '../components/Loader';
 import '../styles/login.css';
 import _ from 'lodash';
+import { ERR_USERNAME_REQUIRED, ERR_PASSWORD_REQUIRED } from '../Constants';
 
 class Login extends Component {
     constructor(props) {
@@ -116,8 +117,8 @@ class Login extends Component {
                                     <Loader isLoading={isLoading}/>
 
                                     <div className="form__error">
-                                        <div>{usernameError ? 'Username is required' : ''}</div>
-                                        <div>{passwordError ? 'Password is required' : ''}</div>
+                                        <div>{usernameError ? ERR_USERNAME_REQUIRED : ''}</div>
+                                        <div>{passwordError ? ERR_PASSWORD_REQUIRED : ''}</div>
                                     </div>
 
                                     <input type="submit" value="LET ME IN" onClick={this.handleSubmit}/>
