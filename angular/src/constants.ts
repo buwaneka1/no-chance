@@ -1,4 +1,4 @@
 export const CONSTANTS = {
-    url: 'www.test.com'
+    userActivate: 'https://api.devrant.thusitha.site/v1/user.activate'
   };
   

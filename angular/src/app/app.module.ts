@@ -9,10 +9,11 @@ import { AppRoutingModule } from './/app-routing.module';
 import { RantListComponent } from './rant-list/rant-list.component';
 import { RantDetailsComponent } from './rant-details/rant-details.component';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent, LoginComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })

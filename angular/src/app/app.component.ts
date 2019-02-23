@@ -1,5 +1,6 @@
 import { Component,ViewChild } from "@angular/core";
 import { LoginComponent } from "./login/login.component";
+import { constants } from '../constants';
 
 @Component({
   selector: "app-root",
