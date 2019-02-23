@@ -19,6 +19,10 @@ export class UtilityService {
        return localStorage.getItem('user');
   }
 
+  public getToken() {
+    return localStorage.getItem('token');
+}
+
   public setLoggedUser(username, token) {
     localStorage.setItem('user', username);
     localStorage.setItem('token', token);

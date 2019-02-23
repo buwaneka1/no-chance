@@ -19,11 +19,11 @@ export class ApiService {
   public call(method, request){
     return new Promise((resolve, reject) => {
 
-      // if(isLogin){
-      //   request.data.headers = {
-      //     'X-Token': getToken()
-      //   }
-      // }
+      if(this.utilityService.isLoggedCheck){
+        request.data.headers = {
+          'X-Token': this.utilityService.getToken()
+        }
+      }
 
       this.httpClient[method](request.url,request.data).subscribe((data: any) => {
         if(data.ok === true){
