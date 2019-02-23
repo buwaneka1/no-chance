@@ -5,6 +5,7 @@ import RantList from './RantList';
 import RantDetails from './RantDetails';
 import Login from './Login';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Util from '../helpers/Util';
 import _ from 'lodash';
 import '../styles/app.css';
 
@@ -16,7 +17,7 @@ class App extends Component {
             isLoading: false,
             isOpen: false,
             login: {
-                isLoggedIn: !_.isEmpty(localStorage.getItem('token')),
+                isLoggedIn: !_.isEmpty(Util.getLocals('token')),
                 username: localStorage.getItem('username'),
                 token: localStorage.getItem('token')
             }
@@ -37,8 +38,11 @@ class App extends Component {
             }
         });
     
-        localStorage.setItem('token', this.state.login.token);
-        localStorage.setItem('username', this.state.login.username);
+        Util.setLocals({
+            token: this.state.login.token,
+            username: this.state.login.username
+        });
+
         document.getElementById('loginModal').classList.toggle('popup--open');
     }
 
