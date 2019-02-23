@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import Loader from '../components/Loader';
 import '../styles/login.css';
 
 class Login extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            isLoading: true
+        };
 
         this.handleLoginModal = this.handleLoginModal.bind(this);
     }
@@ -17,8 +22,9 @@ class Login extends Component {
     }
 
     render() {
-        let isOpen = this.props.isOpen;
-        let popupClass = isOpen ? 'popup popup--open' : 'popup';
+        const isOpen = this.props.isOpen;
+        const isLoading = this.state.isLoading;
+        const popupClass = isOpen ? 'popup popup--open' : 'popup';
 
         return(
             <div className={popupClass}>
@@ -43,9 +49,7 @@ class Login extends Component {
                                     <input type="text" placeholder="USERNAME" ref={(input) => { this.usernameInput = input }}/>
                                     <input type="password" placeholder="PASSWORD" />
 
-                                    <div className="loader">
-                                        <div className="spinner"></div>
-                                    </div>
+                                    <Loader isLoading={isLoading}/>
 
                                     <div className="form__error">
                                         Some fields are missing !
