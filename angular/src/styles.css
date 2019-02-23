@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+
 body,
 html {
   font-family: sans-serif;
@@ -6,4 +6,41 @@ html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Abel", sans-serif;
+}
+
+.hide {
+  display: none !important;
+}
+
+
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: white;
+  background: #24e063;
+}
+
+::selection {
+  color: white;
+  background: #24e063;
+}
+
+.page {
+  height: 100vh;
+}
+
+.layout--wrapped {
+  max-width: 1170px;
+  padding: 12px;
+}
+
+.layout--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
