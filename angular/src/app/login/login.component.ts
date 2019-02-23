@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {NgForm} from '@angular/forms'
+import { ApiService } from '../api.service';
+import { User } from 'models/user';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   usernameEmpty: boolean;
   passwordEmpty: boolean;
 
-  constructor() { 
+  constructor(private apiService: ApiService) { 
     this.usernameEmpty = false;
     this.passwordEmpty = false;
   }
@@ -36,6 +38,19 @@ export class LoginComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     this.validateResults(f);
+    if(!this.usernameEmpty && !this.passwordEmpty) {
+        var userDetails = {
+          username: f.value.username,
+          password: f.value.password
+        }
+
+        this.apiService.activateUser(userDetails).subscribe((res) => {
+          console.log(res);
+          if (res['ok']) {
+           
+          }
+        })
+    }
   }
 
   validateInputs(f: NgForm) {
