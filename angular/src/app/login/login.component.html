@@ -20,7 +20,8 @@
                     <form name="login">
                         <div class="login">
 
-                            <input type="text" placeholder="USERNAME" />
+                            <input type="text" placeholder="USERNAME" #username/>
+                            {{ username.focus() }}
                             <input type="password" placeholder="PASSWORD" />
 
                             <div class="loader">
