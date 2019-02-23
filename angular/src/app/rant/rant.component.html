@@ -2,9 +2,9 @@
 <article class="post">
     <div class="post__inner">
         <div class="score">
-            <div class="score__up layout--center">++</div>
+            <div class="score__up layout--center" [ngClass]="{ 'checked' : upVoted}">++</div>
             <div class="score__board layout--center">{{rantValues.votes}}</div>
-            <div class="score__down layout--center">--</div>
+            <div class="score__down layout--center" [ngClass]="{'checked' : downVoted}">--</div>
         </div>
         <div class="post__body">
             {{rantValues.content}} </div>
