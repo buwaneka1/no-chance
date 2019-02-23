@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/rantlist.css';
 
 class RantList extends Component {
     render() {
