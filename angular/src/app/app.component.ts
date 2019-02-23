@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component,ViewChild } from "@angular/core";
+import { LoginComponent } from "./login/login.component";
 
 @Component({
   selector: "app-root",
@@ -9,4 +10,13 @@ export class AppComponent {
   title = "Eyepax JavaScript Hackathon";
   isLoadingTrue = false;
   isLogingOpen = false;
+
+  @ViewChild('login')
+  private login: LoginComponent;
+
+  receiveJoinClick($event) {
+    this.isLogingOpen = $event;
+    this.login.isOpenChanged();
+  }
+  
 }
