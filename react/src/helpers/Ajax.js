@@ -1,24 +1,14 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 class AjaxHelper extends Component {
-    constructor(props) {
-        super(props);
-
-        const url = this.props.url;
-        const param = this.props.param; 
-    }
-
-    activateUser() {
-        fetch(url, {
+    static async activateUser(url, param) {
+        const response = await fetch(url, {
             method: 'POST',
-            body: param
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(param)
         })
-        .then(function(result) {
-            return result
-        })
-        .catch(function(error) {
-            return error
-        })
+
+        return await response.json();
     }
 }
 

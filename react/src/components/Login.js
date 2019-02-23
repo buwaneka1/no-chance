@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Loader from '../components/Loader';
 import '../styles/login.css';
 import _ from 'lodash';
-import { ERR_USERNAME_REQUIRED, ERR_PASSWORD_REQUIRED } from '../helpers/Constants';
+import { ERR_USERNAME_REQUIRED, ERR_PASSWORD_REQUIRED, URL_POST_USER_ACTIVATE } from '../helpers/Constants';
+import AjaxHelper from '../helpers/Ajax';
 
 class Login extends Component {
     constructor(props) {
@@ -54,7 +55,7 @@ class Login extends Component {
         }
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
 
         if (_.isEmpty(this.state.username)) {
@@ -73,6 +74,14 @@ class Login extends Component {
                 this.passwordInput.focus();
             }
         }
+
+        if (!this.state.usernameError && !this.state.passwordError) {
+            const response = await AjaxHelper.activateUser(URL_POST_USER_ACTIVATE, {
+                username: this.state.username,
+                password: this.state.password
+            });
+        }
+
     }
 
     render() {
