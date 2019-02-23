@@ -12,9 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { UtilityService } from './utility.service';
+import { RantComponent } from './rant/rant.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent, LoginComponent],
+  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent, LoginComponent, RantComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [ApiService, UtilityService],
   bootstrap: [AppComponent]
