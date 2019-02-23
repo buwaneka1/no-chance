@@ -30,7 +30,7 @@
                                 <div *ngIf="passwordEmpty">Password is required</div>
                             </div>
 
-                            <input type="submit" value="LET ME IN" />
+                            <input [disabled]="isLoadingTrue" type="submit" value="LET ME IN" />
                         </div>
                     </form>
                 </div>
