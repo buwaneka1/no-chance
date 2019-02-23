@@ -1,6 +1,7 @@
 export const CONSTANTS = {
     userActivate: 'https://api.devrant.thusitha.site/v1/user.activate',
     userDeactivate: 'https://api.devrant.thusitha.site/v1/user.deactivate',
+    rantList: 'https://api.devrant.thusitha.site/v1/post.list',
 
     /***********************Error Messages***************************** */
     invalidCredentials: 'Username or password is incorrect',

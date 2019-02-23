@@ -1,8 +1,15 @@
    <!-- Start of Rant List Page -->
                 <!-- ======================= -->
                 <div class="post-list">
-                    <app-loader></app-loader>
-                    <app-rant></app-rant>
+                    
+                    <app-loader *ngIf="isLoading"></app-loader>
+                    <span [hidden]="isLoading">
+                    <app-rant  *ngFor="let rant of rantList"
+                    [rantValues] = "rant"
+                    >
+                    </app-rant>
+                </span>
+                    
                     <div class="rant__add" title="Add Rant">+</div> 
                     </div>
                   <!-- ======================= -->

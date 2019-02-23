@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-rant',
@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rant.component.css']
 })
 export class RantComponent implements OnInit {
+  rantValues:any = [];
+
+  @Input('rantValues')
+  set data(rantValues: boolean) {
+    this.rantValues = rantValues;
+  }
+
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
