@@ -8,4 +8,5 @@ import { Component } from "@angular/core";
 export class AppComponent {
   title = "Eyepax JavaScript Hackathon";
   isLoadingTrue = false;
+  isLogingOpen = false;
 }
