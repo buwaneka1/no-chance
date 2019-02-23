@@ -30,6 +30,11 @@ class App extends Component {
     render() {
         const isLoading = this.state.isLoading;
         const isOpen = this.state.isOpen;
+        let login;
+
+        if (isOpen) {
+            login = <Login handleLoginModal={this.handleLoginModal} />
+        }
 
         return (
             <Router>
@@ -43,7 +48,7 @@ class App extends Component {
                                 <Loader isLoading={isLoading} />
                                 <Route path="/" exact component={RantList} />
                                 <Route path="/rant/:id" component={RantDetails} />
-                                <Login isOpen={isOpen} handleLoginModal={this.handleLoginModal} />
+                                {login}
                             </div>
                         </section>
 

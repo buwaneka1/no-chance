@@ -1,33 +1,80 @@
 import React, { Component } from 'react';
 import Loader from '../components/Loader';
 import '../styles/login.css';
+import _ from 'lodash';
 
 class Login extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            isLoading: true
+        this.initialState = {
+            isLoading: true,
+            username: '',
+            password: '',
+            usernameError: false,
+            passwordError: false
         };
 
+        this.state = this.initialState;
+
         this.handleLoginModal = this.handleLoginModal.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
     handleLoginModal() {
         this.props.handleLoginModal();
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         this.usernameInput.focus();
     }
 
+    handleInput(e) {
+        const {name, value} = e.target;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleBlur(e) {
+        const { name, value } = e.target;
+
+        if (name == 'username') {
+            this.setState({
+                usernameError: _.isEmpty(value)
+            });
+        } else {
+            this.setState({
+                passwordError: _.isEmpty(value)
+            });
+        }
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        if (_.isEmpty(this.state.username)) {
+            this.setState({
+                usernameError: true
+            });
+        }
+
+        if (_.isEmpty(this.state.password)) {
+            this.setState({
+                passwordError: true
+            });
+        }
+    }
+
     render() {
-        const isOpen = this.props.isOpen;
         const isLoading = this.state.isLoading;
-        const popupClass = isOpen ? 'popup popup--open' : 'popup';
+        const { username, password, usernameError, passwordError } = this.state;
 
         return(
-            <div className={popupClass}>
+            <div className="popup popup--open">
                 <div className="popup__header">
                     <div title="Close" className="close layout--center" onClick={this.handleLoginModal}>
                         X
@@ -46,16 +93,28 @@ class Login extends Component {
                             <form className="login">
                                 <div className="login">
 
-                                    <input type="text" placeholder="USERNAME" ref={(input) => { this.usernameInput = input }}/>
-                                    <input type="password" placeholder="PASSWORD" />
+                                    <input type="text" 
+                                            placeholder="USERNAME" 
+                                            name="username"
+                                            value={username}
+                                            ref={(input) => { this.usernameInput = input }} 
+                                            onChange={this.handleInput} 
+                                            onBlur={this.handleBlur} />
+                                    <input type="password" 
+                                            placeholder="PASSWORD" 
+                                            name="password" 
+                                            value={password}
+                                            onChange={this.handleInput} 
+                                            onBlur={this.handleBlur}/>
 
                                     <Loader isLoading={isLoading}/>
 
                                     <div className="form__error">
-                                        Some fields are missing !
+                                        <div>{usernameError ? 'Username is required' : ''}</div>
+                                        <div>{passwordError ? 'Password is required' : ''}</div>
                                     </div>
 
-                                    <input type="submit" value="LET ME IN" />
+                                    <input type="submit" value="LET ME IN" onClick={this.handleSubmit}/>
                                 </div>
                             </form>
                         </div>
