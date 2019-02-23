@@ -10,3 +10,9 @@ export const URL_DEL_COMMENT_DELETE = 'https://api.devrant.thusitha.site/v1/comm
 
 export const ERR_USERNAME_REQUIRED = 'Username is required';
 export const ERR_PASSWORD_REQUIRED = 'Password is required';
+
+export const HTTP_ERR = {
+    'SERVER_ERROR': 'Server error',
+    'INVALID_TOKEN': 'Invalid token',
+    'INVALID_CREDENTIALS': 'Invalid username or password'
+};

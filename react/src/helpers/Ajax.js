@@ -1,14 +1,25 @@
-import { Component } from 'react';
+import { HTTP_ERR } from './Constants';
 
-class AjaxHelper extends Component {
-    static async activateUser(url, param) {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(param)
-        })
+class AjaxHelper {
+    static call(request) {
+        return new Promise((resolve, reject) => {
+            fetch(request.url, {
+                method: request.method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(request.param)
+            })
+            .then(response => response.json())
+            .then(res => {
+                if (res.ok) {
+                    resolve(res)
+                } else {
+                    reject(HTTP_ERR[res.error])
+                }
 
-        return await response.json();
+            }).catch(err => {
+                reject(HTTP_ERR[err.error])
+            })
+        });
     }
 }
 

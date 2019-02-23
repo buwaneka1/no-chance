@@ -14,7 +14,11 @@ class Login extends Component {
             username: '',
             password: '',
             usernameError: false,
-            passwordError: false
+            passwordError: false,
+            httpError: {
+                isError: false,
+                message: ''
+            }
         };
 
         this.state = this.initialState;
@@ -46,25 +50,45 @@ class Login extends Component {
 
         if (name === 'username') {
             this.setState({
-                usernameError: _.isEmpty(value)
+                usernameError: _.isEmpty(value),
+                httpError: {
+                    isError: false,
+                    message: ''
+                }
             });
         } else {
             this.setState({
-                passwordError: _.isEmpty(value)
+                passwordError: _.isEmpty(value),
+                httpError: {
+                    isError: false,
+                    message: ''
+                }
             });
         }
     }
 
-    async handleSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
 
         if (_.isEmpty(this.state.username)) {
-            this.setState({ usernameError: true });
+            this.setState({ 
+                usernameError: true,
+                httpError: {
+                    isError: false,
+                    message: ''
+                }
+            });
             this.usernameInput.focus();
         }
 
         if (_.isEmpty(this.state.password)) {
-            this.setState({ passwordError: true });
+            this.setState({ 
+                passwordError: true,
+                httpError: {
+                    isError: false,
+                    message: ''
+                }
+            });
 
             if (!_.isEmpty(this.state.username)) {
                 this.passwordInput.focus();
@@ -77,22 +101,41 @@ class Login extends Component {
             document.getElementById('passwordInput').style.display = 'none';
             document.getElementById('submitBtn').setAttribute('disabled', true);
 
-            const response = await AjaxHelper.activateUser(URL_POST_USER_ACTIVATE, {
-                username: this.state.username,
-                password: this.state.password
+            AjaxHelper.call({
+                method: 'POST',
+                url: URL_POST_USER_ACTIVATE,
+                param: {
+                    username: this.state.username,
+                    password: this.state.password
+                }
+            }).then(response => {
+                this.setState({
+                    httpError: {
+                        isError: false,
+                        message: ''
+                    }
+                });
+            }).catch(error => {
+                this.setState({
+                    httpError: {
+                        isError: true,
+                        message: error
+                    }
+                });
+            }).then(() => {
+                this.setState({ isLoading: false });
+                document.getElementById('usernameInput').style.display = 'block';
+                document.getElementById('passwordInput').style.display = 'block';
+                document.getElementById('submitBtn').removeAttribute('disabled');
             });
 
-            this.setState({ isLoading: false });
-            document.getElementById('usernameInput').style.display = 'block';
-            document.getElementById('passwordInput').style.display = 'block';
-            document.getElementById('submitBtn').removeAttribute('disabled');
         }
 
     }
 
     render() {
         const isLoading = this.state.isLoading;
-        const { username, password, usernameError, passwordError } = this.state;
+        const { username, password, usernameError, passwordError, httpError } = this.state;
 
         return(
             <div className="popup popup--open">
@@ -136,6 +179,7 @@ class Login extends Component {
                                     <div className="form__error">
                                         <div>{usernameError ? ERR_USERNAME_REQUIRED : ''}</div>
                                         <div>{passwordError ? ERR_PASSWORD_REQUIRED : ''}</div>
+                                        <div>{httpError.isError ? httpError.message : ''}</div>
                                     </div>
 
                                     <input type="submit" 
