@@ -42,7 +42,7 @@ class Login extends Component {
     handleBlur(e) {
         const { name, value } = e.target;
 
-        if (name == 'username') {
+        if (name === 'username') {
             this.setState({
                 usernameError: _.isEmpty(value)
             });
@@ -60,6 +60,7 @@ class Login extends Component {
             this.setState({
                 usernameError: true
             });
+            this.usernameInput.focus();
         }
 
         if (_.isEmpty(this.state.password)) {
@@ -104,6 +105,7 @@ class Login extends Component {
                                             placeholder="PASSWORD" 
                                             name="password" 
                                             value={password}
+                                            ref={(input) => { this.passwordInput = input }}
                                             onChange={this.handleInput} 
                                             onBlur={this.handleBlur}/>
 
