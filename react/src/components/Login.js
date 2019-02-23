@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Loader from '../components/Loader';
 import '../styles/login.css';
 import _ from 'lodash';
-import { ERR_USERNAME_REQUIRED, ERR_PASSWORD_REQUIRED } from '../Constants';
+import { ERR_USERNAME_REQUIRED, ERR_PASSWORD_REQUIRED } from '../helpers/Constants';
 
 class Login extends Component {
     constructor(props) {
