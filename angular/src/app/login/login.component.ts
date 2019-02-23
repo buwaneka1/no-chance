@@ -25,8 +25,13 @@ export class LoginComponent implements OnInit {
     this.passwordText = '';
   }
 
+
   isOpenChanged() {
     this.isOpen = true;
+    this.usernameText = '';
+    this.passwordText = '';
+    this.usernameEmpty = false;
+    this.passwordEmpty = false;
   }
 
   onSubmit(f: NgForm) {
