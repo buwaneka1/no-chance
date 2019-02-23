@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Header from './Header'; 
+import Loader from './Loader'; 
 import '../styles/app.css';
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
                 <div className="page">
 
                     <Header/>
+                    <Loader/>
 
                 </div>
             </div>
