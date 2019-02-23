@@ -2,6 +2,16 @@ import React, {Component} from 'react';
 import '../styles/header.css';
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+
+        this.openLoginModal = this.openLoginModal.bind(this);
+    }
+
+    openLoginModal() {
+        this.props.openLoginModal();
+    }
+
     render() {
         return (
             <section className="header layout--center">
@@ -10,17 +20,17 @@ class Header extends Component {
                         <a href="/"><div className="brand__name"><span>#</span>DEVRANT</div></a>
                     </div>
 
-                    <div className="profile layout--center">
+                    {/* <div className="profile layout--center">
                         <div className="profile__picture">
                             <svg height="36" width="36">
                                 <circle cx="18" cy="18" r="18" fill="#5c5f6f"></circle>
                             </svg>
                         </div>
                         <div className="profile__name">Elon</div>
-                    </div>
+                    </div> */}
 
                     <div className="join">
-                        <span>Join</span>
+                        <span onClick={this.openLoginModal}>Join</span>
                         {/* <span>Sign Out</span> */}
                     </div>
                 </div>
