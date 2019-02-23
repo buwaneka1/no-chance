@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from './Header'; 
 import Loader from './Loader'; 
 import RantList from './RantList';
 import RantDetails from './RantDetails';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import Login from './Login';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../styles/app.css';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
                                 <Loader isLoading={false} />
                                 <Route path="/" exact component={RantList} />
                                 <Route path="/rant/:id" component={RantDetails} />
+                                <Login/>
                             </div>
                         </section>
 
