@@ -11,7 +11,7 @@ import { User } from 'models/user';
 
 export class LoginComponent implements OnInit {
   private isOpen = false;
-  private isLoadingTrue = true;
+  private isLoadingTrue = false;
   usernameText: string;
   passwordText: string;
   usernameEmpty: boolean;
@@ -27,45 +27,52 @@ export class LoginComponent implements OnInit {
     this.passwordText = '';
   }
 
-
-  isOpenChanged() {
-    this.isOpen = true;
+  reset() {
     this.usernameText = '';
     this.passwordText = '';
     this.usernameEmpty = false;
     this.passwordEmpty = false;
   }
 
+
+  isOpenChanged() {
+    this.isOpen = true;
+    this.reset();
+  }
+
   onSubmit(f: NgForm) {
-    this.validateResults(f);
+    this.validateResults(f, 0);
     if(!this.usernameEmpty && !this.passwordEmpty) {
+       this.isLoadingTrue = true;
         var userDetails = {
           username: f.value.username,
           password: f.value.password
         }
-
+        this.reset();
         this.apiService.activateUser(userDetails).subscribe((res) => {
-          console.log(res);
           if (res['ok']) {
            
+          } else{
+
           }
+          this.isLoadingTrue = false;
         })
     }
   }
 
-  validateInputs(f: NgForm) {
-      this.validateResults(f);
+  validateInputs(f: NgForm, type) {
+      this.validateResults(f, type);
   }
 
-  validateResults(f) {
-    this.usernameEmpty = false;
+  validateResults(f, type) {
+      this.usernameEmpty = false;
       this.passwordEmpty = false;
     if (!f.value.username && !f.value.password) {
       this.usernameEmpty = true;
       this.passwordEmpty = true;
-    } else if (!f.value.username) {
+    } else if (!f.value.username && type != 2) {
       this.usernameEmpty = true;
-    } else if (!f.value.password) {
+    } else if (!f.value.password && type != 1) {
       this.passwordEmpty = true;
     }
   }

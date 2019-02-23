@@ -19,8 +19,8 @@
                     </div>
                     <form name="login" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
                         <div class="login">
-                            <input type="text" name="username" placeholder="USERNAME" #username [(ngModel)]="usernameText" (blur)="validateInputs(f)" />
-                            <input type="password" name="password" placeholder="PASSWORD" [(ngModel)]="passwordText" #password (blur)="validateInputs(f)"/>
+                            <input type="text" name="username" placeholder="USERNAME" #username [(ngModel)]="usernameText" (blur)="validateInputs(f,1)" />
+                            <input type="password" name="password" placeholder="PASSWORD" [(ngModel)]="passwordText" #password (blur)="validateInputs(f,2)"/>
                             
                             <div class="loader">
                                 <app-loader *ngIf="isLoadingTrue"></app-loader>
