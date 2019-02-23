@@ -12,6 +12,10 @@ class Login extends Component {
         this.props.handleLoginModal();
     }
 
+    componentDidUpdate() {
+        this.usernameInput.focus();
+    }
+
     render() {
         let isOpen = this.props.isOpen;
         let popupClass = isOpen ? 'popup popup--open' : 'popup';
@@ -36,7 +40,7 @@ class Login extends Component {
                             <form className="login">
                                 <div className="login">
 
-                                    <input type="text" placeholder="USERNAME" />
+                                    <input type="text" placeholder="USERNAME" ref={(input) => { this.usernameInput = input }}/>
                                     <input type="password" placeholder="PASSWORD" />
 
                                     <div className="loader">
