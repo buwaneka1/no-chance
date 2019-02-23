@@ -17,19 +17,18 @@
                     <div class="form__description">
                         Vote and comment on others' rants. Post your own.
                     </div>
-                    <form name="login">
+                    <form name="login" #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
                         <div class="login">
-
-                            <input type="text" placeholder="USERNAME" #username/>
-                            {{ username.focus() }}
-                            <input type="password" placeholder="PASSWORD" />
-
+                            <input type="text" name="username" placeholder="USERNAME" #username ngModel (blur)="validateInputs(f)" />
+                            
+                            <input type="password" name="password" placeholder="PASSWORD" ngModel #password (blur)="validateInputs(f)"/>
+                            
                             <div class="loader">
                                 <app-loader *ngIf="isLoadingTrue"></app-loader>
                             </div>
-
                             <div class="form__error">
-                                Some fields are missing !
+                                <div *ngIf="usernameEmpty">Username is required</div>
+                                <div *ngIf="passwordEmpty">Password is required</div>
                             </div>
 
                             <input type="submit" value="LET ME IN" />
