@@ -75,15 +75,17 @@ class Login extends Component {
             this.setState({ isLoading: true });
             document.getElementById('usernameInput').style.display = 'none';
             document.getElementById('passwordInput').style.display = 'none';
+            document.getElementById('submitBtn').setAttribute('disabled', true);
 
             const response = await AjaxHelper.activateUser(URL_POST_USER_ACTIVATE, {
                 username: this.state.username,
                 password: this.state.password
             });
-            
+
             this.setState({ isLoading: false });
             document.getElementById('usernameInput').style.display = 'block';
             document.getElementById('passwordInput').style.display = 'block';
+            document.getElementById('submitBtn').removeAttribute('disabled');
         }
 
     }
@@ -136,7 +138,10 @@ class Login extends Component {
                                         <div>{passwordError ? ERR_PASSWORD_REQUIRED : ''}</div>
                                     </div>
 
-                                    <input type="submit" value="LET ME IN" onClick={this.handleSubmit}/>
+                                    <input type="submit" 
+                                            value="LET ME IN" 
+                                            id="submitBtn"
+                                            onClick={this.handleSubmit}/>
                                 </div>
                             </form>
                         </div>
