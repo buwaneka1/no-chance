@@ -25,7 +25,7 @@
                             <input type="password" placeholder="PASSWORD" />
 
                             <div class="loader">
-                                <div class="spinner"></div>
+                                <app-loader *ngIf="isLoadingTrue"></app-loader>
                             </div>
 
                             <div class="form__error">

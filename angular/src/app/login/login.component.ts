@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   private isOpen = false;
+  private isLoadingTrue = true;
 
   constructor() { }
 
