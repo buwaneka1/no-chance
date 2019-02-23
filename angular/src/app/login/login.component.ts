@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {NgForm} from '@angular/forms'
 import { ApiService } from '../api.service';
 import { User } from 'models/user';
+import { CONSTANTS } from '../../constants';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { User } from 'models/user';
 export class LoginComponent implements OnInit {
   private isOpen = false;
   private isLoadingTrue = false;
+  private errorMessage = null;
   usernameText: string;
   passwordText: string;
   usernameEmpty: boolean;
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
   reset() {
     this.usernameText = '';
     this.passwordText = '';
+    this.errorMessage = null;
     this.usernameEmpty = false;
     this.passwordEmpty = false;
   }
@@ -49,12 +52,16 @@ export class LoginComponent implements OnInit {
           password: f.value.password
         }
         this.reset();
-        this.apiService.activateUser(userDetails).subscribe((res) => {
-          if (res['ok']) {
-           
-          } else{
-
+        this.apiService.call('post', {
+          url: CONSTANTS.userActivate,
+          data: {
+            username: f.value.username,
+            password: f.value.password
           }
+        }).then((res) => {
+          this.isLoadingTrue = false;
+        }).catch(err=>{
+          this.errorMessage = err;
           this.isLoadingTrue = false;
         })
     }
