@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CONSTANTS } from '../constants';
 import { User } from '../models/user';
 import { resolve } from 'url';
+import { UtilityService } from './utility.service';
 
 const errors = {
   'SERVER_ERROR': CONSTANTS.serverError,
@@ -13,7 +14,7 @@ const errors = {
 @Injectable()
 export class ApiService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private utilityService: UtilityService) { }
 
   public call(method, request){
     return new Promise((resolve, reject) => {
@@ -30,9 +31,7 @@ export class ApiService {
         } else{
           reject(errors[data.error]);
         }
-        
         err => {
-          console.log('sdaasd');
           reject(errors[data.error]);
         }
       });

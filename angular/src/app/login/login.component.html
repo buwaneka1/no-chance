@@ -22,8 +22,8 @@
                             <input type="text" name="username" placeholder="USERNAME" #username [(ngModel)]="usernameText" (blur)="validateInputs(f,1)" [hidden]="isLoadingTrue"/>
                             <input type="password" name="password" placeholder="PASSWORD" [(ngModel)]="passwordText" #password (blur)="validateInputs(f,2)" [hidden]="isLoadingTrue"/>
                             
-                            <div class="loader">
-                                <app-loader *ngIf="isLoadingTrue"></app-loader>
+                            <div class="loader"  *ngIf="isLoadingTrue">
+                                <app-loader></app-loader>
                             </div>
                             <div class="form__error">
                                 <div *ngIf="usernameEmpty">Username is required</div>

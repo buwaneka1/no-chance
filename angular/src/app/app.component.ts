@@ -1,6 +1,7 @@
 import { Component,ViewChild } from "@angular/core";
 import { LoginComponent } from "./login/login.component";
 import { CONSTANTS } from '../constants';
+import { HeaderComponent } from "./header/header.component";
 
 @Component({
   selector: "app-root",
@@ -15,9 +16,20 @@ export class AppComponent {
   @ViewChild('login')
   private login: LoginComponent;
 
+  @ViewChild('header')
+  private header: HeaderComponent;
+
   receiveJoinClick($event) {
     this.isLogingOpen = $event;
     this.login.isOpenChanged();
+  }
+
+  receiveLoggedIn($event) {
+    this.header.isLoggedIn();
+  }
+
+  setUserName($event) {
+    this.header.setHeaderName($event);
   }
   
 }

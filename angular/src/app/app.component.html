@@ -5,7 +5,7 @@
 		<!-- ======================= -->
   
     
-       <app-header (joinEvent)="receiveJoinClick($event)"></app-header>
+       <app-header #header (joinEvent)="receiveJoinClick($event)" ></app-header>
 		
 		<!-- ======================= -->
         <!-- End of Header -->
@@ -33,6 +33,6 @@
 
     </div>
 
-    <app-login [isOpen]="isLogingOpen"  #login></app-login>
+    <app-login [isOpen]="isLogingOpen"  #login (usernameEvent)="setUserName($event)" (loggedIn)="receiveLoggedIn($event)"></app-login>
 
 

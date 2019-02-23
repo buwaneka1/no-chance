@@ -1,6 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {NgForm} from '@angular/forms'
+import { Observable } from 'rxjs/Observable';
+
 import { ApiService } from '../api.service';
+import { UtilityService } from '../utility.service';
+
 import { User } from 'models/user';
 import { CONSTANTS } from '../../constants';
 
@@ -18,8 +22,10 @@ export class LoginComponent implements OnInit {
   passwordText: string;
   usernameEmpty: boolean;
   passwordEmpty: boolean;
+  @Output() loggedIn = new EventEmitter<boolean>();
+  @Output() usernameEvent = new EventEmitter<boolean>();
 
-  constructor(private apiService: ApiService) { 
+  constructor(private apiService: ApiService, private utilityService: UtilityService) { 
     this.usernameEmpty = false;
     this.passwordEmpty = false;
   }
@@ -29,19 +35,12 @@ export class LoginComponent implements OnInit {
     this.passwordText = '';
   }
 
-  reset() {
-    this.usernameText = '';
-    this.passwordText = '';
-    this.errorMessage = null;
-    this.usernameEmpty = false;
-    this.passwordEmpty = false;
-  }
-
-
+  /** to handle when Join button is clicked on header */
   isOpenChanged() {
     this.isOpen = true;
     this.reset();
   }
+
 
   onSubmit(f: NgForm) {
     this.validateResults(f, 0);
@@ -59,7 +58,11 @@ export class LoginComponent implements OnInit {
             password: f.value.password
           }
         }).then((res) => {
-          this.isLoadingTrue = false;
+          this.loggedIn.emit(true);
+          this.usernameEvent.emit(res['username']);
+          this.utilityService.setLoggedUser(res['username'], res['token']);
+          this.isOpen = false;
+          this.reset();
         }).catch(err=>{
           this.errorMessage = err;
           this.isLoadingTrue = false;
@@ -67,10 +70,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /**validate for on blur events */
   validateInputs(f: NgForm, type) {
-      this.validateResults(f, type);
+    this.validateResults(f, type);
   }
 
+  /**common function to validate******/
   validateResults(f, type) {
       this.usernameEmpty = false;
       this.passwordEmpty = false;
@@ -87,6 +92,15 @@ export class LoginComponent implements OnInit {
   @Input('isOpen')
   set data(isOpen: boolean) {
     this.isOpen = isOpen;
+  }
+
+  /**to reset the values */
+  reset() {
+    this.usernameText = '';
+    this.passwordText = '';
+    this.errorMessage = null;
+    this.usernameEmpty = false;
+    this.passwordEmpty = false;
   }
 
 }
