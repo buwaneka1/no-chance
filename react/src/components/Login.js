@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import '../styles/login.css';
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleLoginModal = this.handleLoginModal.bind(this);
+    }
+
+    handleLoginModal() {
+        this.props.handleLoginModal();
+    }
+
     render() {
         let isOpen = this.props.isOpen;
         let popupClass = isOpen ? 'popup popup--open' : 'popup';
@@ -9,7 +19,7 @@ class Login extends Component {
         return(
             <div className={popupClass}>
                 <div className="popup__header">
-                    <div title="Close" className="close layout--center">
+                    <div title="Close" className="close layout--center" onClick={this.handleLoginModal}>
                         X
                     </div>
                 </div>

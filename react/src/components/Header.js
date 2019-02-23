@@ -5,11 +5,11 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.openLoginModal = this.openLoginModal.bind(this);
+        this.handleLoginModal = this.handleLoginModal.bind(this);
     }
 
-    openLoginModal() {
-        this.props.openLoginModal();
+    handleLoginModal() {
+        this.props.handleLoginModal();
     }
 
     render() {
@@ -30,7 +30,7 @@ class Header extends Component {
                     </div> */}
 
                     <div className="join">
-                        <span onClick={this.openLoginModal}>Join</span>
+                        <span onClick={this.handleLoginModal}>Join</span>
                         {/* <span>Sign Out</span> */}
                     </div>
                 </div>
