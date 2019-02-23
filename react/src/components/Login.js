@@ -67,6 +67,10 @@ class Login extends Component {
             this.setState({
                 passwordError: true
             });
+
+            if (!_.isEmpty(this.state.username)) {
+                this.passwordInput.focus();
+            }
         }
     }
 
