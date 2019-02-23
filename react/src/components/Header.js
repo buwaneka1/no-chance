@@ -7,10 +7,15 @@ class Header extends Component {
         super(props);
 
         this.handleLoginModal = this.handleLoginModal.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     handleLoginModal() {
         this.props.handleLoginModal();
+    }
+
+    handleLogout() {
+        this.props.handleLogout();
     }
 
     render() {
@@ -19,7 +24,7 @@ class Header extends Component {
         let actionButton;
 
         if (isLoggedIn) {
-            actionButton = <span>Sign Out</span>;
+            actionButton = <span onClick={this.handleLogout}>Sign Out</span>;
         } else {
             actionButton = <span onClick={this.handleLoginModal}>Join</span>;
         }

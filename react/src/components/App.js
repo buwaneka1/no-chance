@@ -6,6 +6,8 @@ import RantDetails from './RantDetails';
 import Login from './Login';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Util from '../helpers/Util';
+import AjaxHelper from '../helpers/Ajax';
+import { URL_POST_USER_DEACTIVATE } from '../helpers/Constants';
 import _ from 'lodash';
 import '../styles/app.css';
 
@@ -25,8 +27,28 @@ class App extends Component {
 
         this.handleLoginModal = this.handleLoginModal.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
+    handleLogout() {
+        AjaxHelper.call({
+            method: 'POST',
+            url: URL_POST_USER_DEACTIVATE,
+            param: {}
+        }).then(data => {
+            if (data.ok) {
+                this.setState({
+                    login: {
+                        isLoggedIn: false,
+                        username: '',
+                        token: ''
+                    }
+                });
+
+                Util.removeLocals(['token', 'username']);
+            }
+        });
+    }
 
     handleLogin(username, token) {
         this.setState({
@@ -69,7 +91,8 @@ class App extends Component {
 
                         <Header isLoggedIn={this.state.login.isLoggedIn} 
                                 username={this.state.login.username} 
-                                handleLoginModal={this.handleLoginModal} />
+                                handleLoginModal={this.handleLoginModal}
+                                handleLogout={this.handleLogout} />
 
                         <section className="main layout--center">
                             <div className="main__content layout--wrapped">

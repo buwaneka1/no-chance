@@ -3,18 +3,17 @@ import Util from './Util';
 
 class AjaxHelper {
     static call(request) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
         if (Util.isLogged()) {
-            const headers = new Headers();
             headers.append('X-Token', Util.getLocals('token'));
         }
 
         return new Promise((resolve, reject) => {
             fetch(request.url, {
                 method: request.method,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: headers,
                 body: JSON.stringify(request.param)
             })
             .then(response => response.json())

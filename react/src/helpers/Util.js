@@ -13,6 +13,10 @@ class Util {
     static getLocals(local) {
         return localStorage.getItem(local);
     }
+
+    static removeLocals(keys) {
+        _.each(keys, key => localStorage.removeItem(key));
+    }
 }
 
 export default Util;
