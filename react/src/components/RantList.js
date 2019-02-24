@@ -15,6 +15,8 @@ class RantList extends Component {
         };
 
         this.state = this.initState;
+
+        this.handleLoginModal = this.handleLoginModal.bind(this);
     }
     componentDidMount() {
         AjaxHelper.call({
@@ -35,13 +37,17 @@ class RantList extends Component {
         });
     }
 
+    handleLoginModal() {
+        this.props.handleLoginModal();
+    }
+
     render() {
         const isLoading = this.state.isLoading;
 
         return(
             <div className="post-list">
                     
-                {this.state.posts.map((post, key) => <Rant post={post} key={key} />)}
+                {this.state.posts.map((post, key) => <Rant handleLoginModal={this.handleLoginModal} post={post} key={key} />)}
                     
                 <Loader isLoading={isLoading}/>
 

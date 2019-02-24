@@ -97,7 +97,7 @@ class App extends Component {
                         <section className="main layout--center">
                             <div className="main__content layout--wrapped">
                                 <Loader isLoading={isLoading} />
-                                <Route path="/" exact component={RantList} />
+                                <Route path="/" exact render={(props) => <RantList {...props} handleLoginModal={this.handleLoginModal} />} />
                                 <Route path="/rant/:id" component={RantDetails} />
                                 <Login handleLogin={this.handleLogin} handleLoginModal={this.handleLoginModal} />
                             </div>

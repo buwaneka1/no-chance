@@ -1,10 +1,43 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Util from '../helpers/Util';
+import AjaxHelper from '../helpers/Ajax';
+import { URL_POST_POST_VOTE } from '../helpers/Constants';
 import '../styles/rant.css';
 
 class Rant extends Component {
     constructor(props) {
         super(props);
+
+        this.handleVote = this.handleVote.bind(this);
+    }
+
+    handleVote(e) {
+        e.preventDefault();
+        
+        if (!Util.isLogged()) {
+            this.props.handleLoginModal();
+        } else {
+            const voteType = e.target.dataset.vote;
+            const post = this.props.post;
+
+            AjaxHelper.call({
+                method: 'POST',
+                url: URL_POST_POST_VOTE,
+                param: {
+                    postId: post.id,
+                    direction: voteType
+                }
+            }).then(data => {
+                if (data.ok) {
+                    console.log('data: ', data);
+                }
+            }).catch(error => {
+            }).then(() => {
+                
+            });
+        }
+
     }
 
     render() {
@@ -17,9 +50,9 @@ class Rant extends Component {
                 <Link to={"/rant/" + post.id}>
                     <div className="post__inner">
                         <div className="score"> 
-                            <div className={"score__up layout--center " + myUpvote}>++</div>
+                            <div className={"score__up layout--center " + myUpvote} data-vote="up" onClick={this.handleVote}>++</div>
                             <div className="score__board layout--center">{post.votes}</div>
-                            <div className={"score__down layout--center " + myDownvote}>--</div>
+                            <div className={"score__down layout--center " + myDownvote} data-vote="down" onClick={this.handleVote}>--</div>
                             </div>
                         <div className="post__body">{post.content}</div>
                         </div>
