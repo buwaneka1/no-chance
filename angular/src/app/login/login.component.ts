@@ -15,9 +15,9 @@ import { CONSTANTS } from '../../constants';
 })
 
 export class LoginComponent implements OnInit {
-  private isOpen = false;
-  private isLoadingTrue = false;
-  private errorMessage = null;
+   isOpen = false;
+   isLoadingTrue = false;
+   errorMessage = null;
   usernameText: string;
   passwordText: string;
   usernameEmpty: boolean;

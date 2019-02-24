@@ -13,9 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { UtilityService } from './utility.service';
 import { RantComponent } from './rant/rant.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent, LoginComponent, RantComponent],
+  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent, LoginComponent, RantComponent, AlertComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [ApiService, UtilityService],
   bootstrap: [AppComponent]

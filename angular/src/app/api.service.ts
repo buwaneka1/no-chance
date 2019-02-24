@@ -17,16 +17,15 @@ export class ApiService {
   constructor(private httpClient: HttpClient, private utilityService: UtilityService) { }
 
   public call(method, request){
+    const httpOptions = (this.utilityService.isLoggedCheck()) ? {
+      headers: new HttpHeaders({
+       'X-Token': this.utilityService.getToken()
+     })} :  {
+       headers: new HttpHeaders({
+         'Content-Type':  'application/json'
+      })};
+
     return new Promise((resolve, reject) => {
-
-        const httpOptions = (this.utilityService.isLoggedCheck()) ? {
-         headers: new HttpHeaders({
-          'X-Token': this.utilityService.getToken()
-        })} :  {
-          headers: new HttpHeaders({
-            'Content-Type':  'application/json'
-         })};
-
       this.httpClient[method](request.url,request.data, httpOptions).subscribe((data: any) => {
         if(data.ok === true){
           resolve(data);

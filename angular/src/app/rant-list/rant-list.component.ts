@@ -30,4 +30,8 @@ export class RantListComponent implements OnInit {
     })
   }
 
+  receiveVoteClick($event) {
+    this.getRantList();
+  }
+
 }
