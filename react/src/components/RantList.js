@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Rant from './Rant';
 import Loader from './Loader';
 import AjaxHelper from '../helpers/Ajax';
@@ -23,14 +22,12 @@ class RantList extends Component {
             url: URL_GET_POST_LIST,
             param: ''
         }).then(data => {
-            console.log('data: ', data);
             if (data.ok) {
                 this.setState({
                     posts: data.posts
                 });
             }
         }).catch(error => {
-            console.log('err: ', error);
         }).then(() => {
             this.setState({
                 isLoading: false
@@ -44,9 +41,7 @@ class RantList extends Component {
         return(
             <div className="post-list">
                     
-                <Link to="/rant/1">
-                    <Rant />
-                </Link>
+                {this.state.posts.map((post, key) => <Rant post={post} key={key} />)}
                     
                 <Loader isLoading={isLoading}/>
 
