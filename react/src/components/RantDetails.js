@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Vote from '../components/Vote';
+import Loader from '../components/Loader';
 
 class RantDetails extends Component {
     render() {
         return (
             <div className="rant-details layout--center">
-
+                <Loader isLoading={true} />
                 <section className="post-hero">
                     <div className="post-hero__inner">
                         <Vote />
