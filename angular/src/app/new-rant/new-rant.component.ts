@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-new-rant',
@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-rant.component.css']
 })
 export class NewRantComponent implements OnInit {
-
+  isOpen = false;
+  
   constructor() { }
+
+  @Input('isOpen')
+  set dataOpen(isOpen: boolean) {
+    this.isOpen = isOpen;
+  }
 
   ngOnInit() {
   }

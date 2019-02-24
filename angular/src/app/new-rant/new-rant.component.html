@@ -1,9 +1,9 @@
   <!-- Start of comment popup -->
     <!-- ======================= -->
 
-    <div class="popup popup--open">
+    <div class="popup"  [ngClass]="{'popup--open': isOpen}">
         <div class="popup__header">
-            <div title="Close" class="close layout--center">
+            <div title="Close" class="close layout--center" (click)="isOpen = !isOpen">
                 X
             </div>
         </div>
@@ -12,7 +12,7 @@
 
                 <div class="form">
                     <div class="form__title">
-                        NEW <span class="highlight">#</span>COMMENT
+                        NEW <span class="highlight">#</span>RANT
                     </div>
                     <div class="form__description">
                         Comment with 140 characters.
@@ -29,7 +29,7 @@
                                 Some fields are missing !
                             </div>
 
-                            <input type="submit" value="COMMENT"/>
+                            <input type="submit" value="RANT"/>
                         </div>
                     </form>
                 </div>

@@ -6,8 +6,9 @@
                     [rantValues] = "rant"
                     >
                     </app-rant>
-                    <div class="rant__add" title="Add Rant">+</div> 
+                    <div class="rant__add" title="Add Rant" (click)="openNew()">+</div> 
                     </div>
                   <!-- ======================= -->
                   <!-- End of Rant List Page -->
+                  <app-new-rant [isOpen]="openNewRant"></app-new-rant>
   

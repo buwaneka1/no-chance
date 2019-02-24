@@ -9,6 +9,7 @@ import { CONSTANTS } from '../../constants';
 })
 export class RantListComponent implements OnInit {
   isLoading: boolean = false;
+  openNewRant: boolean = false;
   rantList: Array<any> = [];
 
   constructor(private apiService: ApiService) { }
@@ -32,6 +33,10 @@ export class RantListComponent implements OnInit {
 
   receiveVoteClick($event) {
     this.getRantList();
+  }
+
+  openNew() {
+    this.openNewRant = true;
   }
 
 }
