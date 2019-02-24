@@ -1,12 +1,11 @@
 
     <div class="post__inner">
         <div class="score">
-            <div class="score__up layout--center" [ngClass]="{ 'checked' : upVoted}" (click)="voteForPost(1)">++</div>
-            <div class="score__board layout--center">{{rantValues.votes}}</div>
-            <div class="score__down layout--center" [ngClass]="{'checked' : downVoted}" (click)="voteForPost(-1)">--</div>
+            <app-voting [votingCount]="rantValues.votes" [downVoted]="downVoted" [upVoted]="upVoted"></app-voting>
         </div>
-        <div class="post__body">
-            {{rantValues.content}} </div>
+       
+        <a class="post__body" href="rant/{{rantValues.id}}">
+            {{rantValues.content}} </a>
     </div>
     <div class="post__footer">
         <div class="post__time">{{rantValues.displayTime}}</div>
@@ -20,3 +19,4 @@
             {{rantValues.commentCount}}
         </div>
     </div>
+    <app-alert [isOpen]="isError" [title]="title" [description]="description"></app-alert>

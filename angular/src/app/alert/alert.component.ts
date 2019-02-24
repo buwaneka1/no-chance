@@ -6,17 +6,23 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./alert.component.css']
 })
 export class AlertComponent implements OnInit {
-  title: string= '';
-  description: string= '';
-
+  isOpen = false;
+  title:string = '';
+  description:string = '';
+  
   constructor() { }
 
   ngOnInit() {
   }
 
+  @Input('isOpen')
+  set dataOpen(isOpen: boolean) {
+    this.isOpen = isOpen;
+  }
+
   @Input('title')
   set dataTitle(title: string) {
-    this.title = title;
+    title = title;
   }
 
   @Input('description')
@@ -24,4 +30,8 @@ export class AlertComponent implements OnInit {
     this.description = description;
   }
 
+  alertClose() {
+    this.isOpen = false;
+  }
+  
 }

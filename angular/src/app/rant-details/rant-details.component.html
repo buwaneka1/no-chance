@@ -6,9 +6,7 @@
     <section class="post-hero">
         <div class="post-hero__inner">
             <div class="score">
-                <div class="score__up layout--center">++</div>
-                <div class="score__board layout--center">100</div>
-                <div class="score__down layout--center">--</div>
+                    <app-voting [votingCount]="rantValues.votes" [downVoted]="downVoted" [upVoted]="upVoted"></app-voting>
             </div>
             <div class="post-hero__body">
                 <div class="profile">

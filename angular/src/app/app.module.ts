@@ -14,9 +14,11 @@ import { ApiService } from './api.service';
 import { UtilityService } from './utility.service';
 import { RantComponent } from './rant/rant.component';
 import { AlertComponent } from './alert/alert.component';
+import { VotingComponent } from './voting/voting.component';
+import { NewRantComponent } from './new-rant/new-rant.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent, LoginComponent, RantComponent, AlertComponent],
+  declarations: [AppComponent, HeaderComponent, LoaderComponent, RantListComponent, RantDetailsComponent, LoginComponent, RantComponent, AlertComponent, VotingComponent, NewRantComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [ApiService, UtilityService],
   bootstrap: [AppComponent]

@@ -1,0 +1,3 @@
+<div class="score__up layout--center" [ngClass]="{ 'checked' : upVoted}" (click)="voteForPost(1)">++</div>
+<div class="score__board layout--center">{{votingCount}}</div>
+<div class="score__down layout--center" [ngClass]="{'checked' : downVoted}" (click)="voteForPost(-1)">--</div>

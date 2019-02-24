@@ -13,14 +13,15 @@ export class RantComponent implements OnInit {
   upVoted:boolean = false;
   downVoted:boolean = false;
   isLogged:boolean = false;
+  title:string = '';
+  description:string = '';
+  isError:boolean = false;
   @Output() voteEvent = new EventEmitter<boolean>();
 
   @Input('rantValues')
   set data(rantValues: any) {
     this.rantValues = rantValues;
-    console.log(rantValues);
     if(this.rantValues['myVote'] == 1) {
-      console.log(rantValues);
       this.upVoted = true;
     } else if (this.rantValues['myVote'] == -1){
       this.downVoted = true;
@@ -61,7 +62,10 @@ export class RantComponent implements OnInit {
           this.downVoted = true;
         }
       }).catch(err=>{
-
+        console.log('ree');
+        this.isError = true;
+        this.title="Oops Error Occured";
+        this.description=err;
       })
     }
 
