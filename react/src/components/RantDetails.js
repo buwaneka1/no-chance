@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Vote from '../components/Vote';
 
 class RantDetails extends Component {
     render() {
@@ -7,11 +8,7 @@ class RantDetails extends Component {
 
                 <section className="post-hero">
                     <div className="post-hero__inner">
-                        <div className="score">
-                            <div className="score__up layout--center">++</div>
-                            <div className="score__board layout--center">100</div>
-                            <div className="score__down layout--center">--</div>
-                            </div>
+                        <Vote />
                         <div className="post-hero__body">
                             <div className="profile">
                                 <div className="profile__picture">
