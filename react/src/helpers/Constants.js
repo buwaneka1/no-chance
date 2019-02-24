@@ -2,7 +2,7 @@ export const URL_POST_USER_ACTIVATE = 'https://api.devrant.thusitha.site/v1/user
 export const URL_POST_USER_DEACTIVATE = 'https://api.devrant.thusitha.site/v1/user.deactivate';
 export const URL_GET_POST_LIST = 'https://api.devrant.thusitha.site/v1/post.list';
 export const URL_POST_POST_ADD = 'https://api.devrant.thusitha.site/v1/post.add';
-export const URL_GET_POST_DETAILS = 'https://api.devrant.thusitha.site/v1/post.details?postId=Kt3T2jXXi6XofMTGUArzrt';
+export const URL_GET_POST_DETAILS = 'https://api.devrant.thusitha.site/v1/post.details?postId=';
 export const URL_DEL_POST_DELETE = 'https://api.devrant.thusitha.site/v1/post.delete';
 export const URL_POST_POST_VOTE = 'https://api.devrant.thusitha.site/v1/post.vote';
 export const URL_POST_COMMENT_ADD = 'https://api.devrant.thusitha.site/v1/comment.add';

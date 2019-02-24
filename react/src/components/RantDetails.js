@@ -1,9 +1,44 @@
 import React, { Component } from 'react';
 import Vote from '../components/Vote';
 import Loader from '../components/Loader';
+import AjaxHelper from '../helpers/Ajax';
+import { URL_GET_POST_DETAILS } from '../helpers/Constants';
 
 class RantDetails extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            post: []
+        };
+    }
+
+    componentDidMount() {
+        const { match: { params } } = this.props;
+
+        console.log('params: ', params.id);
+
+        AjaxHelper.call({
+            method: 'GET',
+            url: URL_GET_POST_DETAILS + params.id,
+            param: ''
+        }).then(data => {
+            console.log('dfata: ', data);
+            if (data.ok) {
+                this.setState({
+                    post: data.post
+                });
+            }
+        }).catch(error => {
+            console.log('err: ', error);
+        }).then(() => {
+
+        });
+    }
+
     render() {
+        const post = this.state.post;
+
         return (
             <div className="rant-details layout--center">
                 <Loader isLoading={true} />
@@ -18,17 +53,17 @@ class RantDetails extends Component {
                                         </svg>
                                     </div>
                                 <div className="profile__name">
-                                        Elon
+                                        {post.author}
                                     </div>
                                 </div>
                             <div className="post__details">
-                                    Lorem ipsum                                    
+                                {post.content}                                    
                                 </div>
                             </div>
                         </div>
                     <div className="post-hero__footer">
                         <div className="post-hero__delete">DELETE</div>
-                        <div className="post-hero__time">2m ago</div>
+                        <div className="post-hero__time">{post.displayTime}</div>
                         </div>
                     </section>
 
