@@ -3,14 +3,28 @@ import React, { Component } from 'react';
 class Alert extends Component {
     constructor(props) {
         super(props);
+
+        this.initialState = {
+            isOpenAlert: false
+        };
+
+        this.state = this.initialState;
+    }
+
+    showHideAlert() {
+        const isOpenAlert = this.state.isOpenAlert;
+        this.setState({
+            isOpenAlert: !isOpenAlert
+        });
     }
 
     render() {
         const title = this.props.title;
         const description = this.props.description;
+        const openModal = this.state.isOpenAlert ? 'popup popup--open' : 'popup';
 
         return (
-            <div className="popup popup--open">
+            <div className={openModal}>
                 <div className="popup__header">
                     <div title="Close" className="close layout--center">
                         X
