@@ -17,8 +17,14 @@ class RantList extends Component {
         this.state = this.initState;
 
         this.handleLoginModal = this.handleLoginModal.bind(this);
+        this.loadPosts = this.loadPosts.bind(this);
     }
-    componentDidMount() {
+
+    loadPosts() {
+        this.setState({
+            isLoading: true
+        });
+        document.getElementById('postList').style.display = 'none';
         AjaxHelper.call({
             method: 'GET',
             url: URL_GET_POST_LIST,
@@ -34,7 +40,12 @@ class RantList extends Component {
             this.setState({
                 isLoading: false
             });
+            document.getElementById('postList').style.display = 'block';
         });
+    }
+
+    componentDidMount() {
+        this.loadPosts();
     }
 
     handleLoginModal() {
@@ -45,14 +56,15 @@ class RantList extends Component {
         const isLoading = this.state.isLoading;
 
         return(
-            <div className="post-list">
-                    
-                {this.state.posts.map((post, key) => <Rant handleLoginModal={this.handleLoginModal} post={post} key={key} />)}
-                    
-                <Loader isLoading={isLoading}/>
+            <div>
+                <div className="post-list" id="postList">
 
-                <div className="rant__add" title="Add Rant">+</div>        
+                    {this.state.posts.map((post, key) => <Rant loadPosts={this.loadPosts} handleLoginModal={this.handleLoginModal} post={post} key={key} />)}
 
+                    <div className="rant__add" title="Add Rant">+</div>
+
+                </div>
+                <Loader isLoading={isLoading} />
             </div>
         );
     }

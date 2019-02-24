@@ -9,6 +9,10 @@ class Rant extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            myVote: this.props.post.myVote
+        };
+
         this.handleVote = this.handleVote.bind(this);
     }
 
@@ -18,7 +22,7 @@ class Rant extends Component {
         if (!Util.isLogged()) {
             this.props.handleLoginModal();
         } else {
-            const voteType = e.target.dataset.vote;
+            const voteType = (this.state.myVote !== 0) ? 'reset' : e.target.dataset.vote;
             const post = this.props.post;
 
             AjaxHelper.call({
@@ -30,7 +34,10 @@ class Rant extends Component {
                 }
             }).then(data => {
                 if (data.ok) {
-                    console.log('data: ', data);
+                    this.setState({
+                        myVote: data.post.myVote
+                    });
+                    this.props.loadPosts();
                 }
             }).catch(error => {
             }).then(() => {
