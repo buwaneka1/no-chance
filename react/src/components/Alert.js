@@ -5,13 +5,15 @@ class Alert extends Component {
         super(props);
 
         this.initialState = {
-            isOpenAlert: false
+            isOpenAlert: true
         };
 
         this.state = this.initialState;
+        this.showHideAlert = this.showHideAlert.bind(this);
     }
 
-    showHideAlert() {
+    showHideAlert(e) {
+        e.preventDefault();
         const isOpenAlert = this.state.isOpenAlert;
         this.setState({
             isOpenAlert: !isOpenAlert
@@ -26,7 +28,7 @@ class Alert extends Component {
         return (
             <div className={openModal}>
                 <div className="popup__header">
-                    <div title="Close" className="close layout--center">
+                    <div title="Close" className="close layout--center" onClick={this.showHideAlert}>
                         X
                     </div>
                 </div>
@@ -42,7 +44,7 @@ class Alert extends Component {
                             </div>
                             <form name="alert">
                                 <div className="alert">
-                                    <input type="submit" value="OK" />
+                                    <input type="submit" value="OK" onClick={this.showHideAlert} />
                                 </div>
                             </form>
                         </div>
